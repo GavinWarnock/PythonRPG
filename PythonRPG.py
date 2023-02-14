@@ -138,18 +138,16 @@ def Cerberus_attack(Hercules):                                              # Fu
         else:
             print("With a great leap the beast pounces and misses you!")
 
-Hercules["Health"] = 100
-Nemean_Lion["Health"] = 25
+
 while Hercules["Health"] > 0 or Nemean_Lion["Health"] > 0:
     Hercules_attack(Nemean_Lion)
-    Nemean_Lion_attack(Hercules)
     if Hercules["Health"] < 0:
         print("You have died")
         break
     elif Nemean_Lion["Health"] < 0:
         print("You have slain the Nemean Lion!")
         break
-
+    Nemean_Lion_attack(Hercules)
 
 
 
