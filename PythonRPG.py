@@ -33,12 +33,13 @@ def Multi_Bite(attack_power):
 def Pounce(attack_power):
     damage_dealt = attack_power + random.randint(1,10)
     print(f"The beast rears back and pounces on you for {damage_dealt} damage!")
+    return damage_dealt
 def Tail_Whip(attack_power):
     damage_dealt = attack_power + random.randint(1,12)
     print(f"The monster swipes it's mighty tail at you for {damage_dealt} damage!")
 
 
-def Hercules_attack(enemy):                                                  # Function for Herc's attacks against enemies
+def Hercules_attack(enemy):                                                 # Function for Herc's attacks against enemies
     attack = input("Which attack would you like to use? Punch, Kick, or Sword ")   # Function for Herc's attacks against enemies
     if attack == "Punch":
         attack_chance = Hercules.get("Attack Power") + random.randint(1,20)
@@ -91,7 +92,7 @@ def Nemean_Lion_attack(Hercules):                                           # Fu
         print(f"The beast attacks with a {enemy_attack_chance}")
         if enemy_attack_chance >= Hercules["Armor Class"]:
             print("You have been struck!")
-            Hercules["Health"] -= Pounce(Nemean_Lion["Attack Power"])
+            Hercules["Health"] -= Pounce(Nemean_Lion["Attack Power"])         # LINE BROKEN UNSURE AS TO WHY?
         else:
             print("With a great leap the beast pounces and misses you!")
     else:
@@ -137,9 +138,10 @@ def Cerberus_attack(Hercules):                                              # Fu
         else:
             print("With a great leap the beast pounces and misses you!")
 
+while Hercules["Health"] > 0 or Nemean_Lion["Health"] > 0:
+    Hercules_attack(Nemean_Lion)
+    Nemean_Lion_attack(Hercules)
 
 
-Hercules_attack(Nemean_Lion)
-Nemean_Lion_attack(Hercules)
-Lernaean_Hydra_attack(Hercules)
-Cerberus_attack(Hercules)
+
+
