@@ -1,3 +1,3 @@
 # PythonRPG
 
-Creating an RPG game using python.
+Creating an RPG using python.

@@ -23,7 +23,7 @@ def Kick(attack_power):
     return damage_dealt
 
 def Claws(attack_power):
-    damage_dealt = attack_power + random.randint(1,6)
+    damage_dealt = attack_power + random.randint(1,6)                # Different functions for enemy attacks
     print(f"The monsters claws rend your flesh for {damage_dealt} damage!")
     return damage_dealt
 def Multi_Bite(attack_power):
@@ -39,7 +39,7 @@ def Tail_Whip(attack_power):
 
 
 def Hercules_attack(enemy):
-    attack = input("Which attack would you like to use? Punch, Kick, or Sword ")
+    attack = input("Which attack would you like to use? Punch, Kick, or Sword ")   # Function for Herc's attacks against enemies
     if attack == "Punch":
         attack_chance = Hercules.get("Attack Power") + random.randint(1,20)
         print(f"Your attack roll is {attack_chance}")
@@ -62,18 +62,17 @@ def Hercules_attack(enemy):
         if attack_chance >= enemy["Armor Class"]:
             print("You have struck true!")
             enemy["Health"] -= Sword(Hercules.get("Attack Power"))
-
         else:
             print("Your attack missed!")
     else:
         print("Please select an valid attack.")
 
-def Nemean_Lion_attack(Hercules):
+def Nemean_Lion_attack(Hercules):                                           # Function for the Nemean Lion's attacks against Herc
     print("Your enemy readies a vicious blow!")
     foe_attack = pick_random_attack(Nemean_Lion["Attacks"])
     if foe_attack == "Claws":
         enemy_attack_chance = Nemean_Lion["Attack Power"] + random.randint(1,20)
-        print(enemy_attack_chance)
+        print(f"The beast attacks with a {enemy_attack_chance}")
         if enemy_attack_chance >= Hercules["Armor Class"]:
             print("You have been struck!")
             Hercules["Health"] -= Claws(Nemean_Lion["Attack Power"])
@@ -81,7 +80,7 @@ def Nemean_Lion_attack(Hercules):
             print("The sweeping claw attack misses!")
     elif foe_attack == "Multi-Bite":
         enemy_attack_chance = Nemean_Lion["Attack Power"] + random.randint(1,20)
-        print(enemy_attack_chance)
+        print(f"The beast attacks with a {enemy_attack_chance}")
         if enemy_attack_chance >= Hercules["Armor Class"]:
             print("You have been struck!")
             Hercules["Health"] -= Multi_Bite(Nemean_Lion["Attack Power"])
@@ -89,7 +88,7 @@ def Nemean_Lion_attack(Hercules):
             print("The lunging bite attack missed!")
     elif foe_attack == "Pounce":
         enemy_attack_chance = Nemean_Lion["Attack Power"] + random.randint(1,20)
-        print(enemy_attack_chance)
+        print(f"The beast attacks with a {enemy_attack_chance}")
         if enemy_attack_chance >= Hercules["Armor Class"]:
             print("You have been struck!")
             Hercules["Health"] -= Pounce(Nemean_Lion["Attack Power"])
@@ -98,9 +97,27 @@ def Nemean_Lion_attack(Hercules):
     else:
         print("Invalid Attack")
 
-    
-            
+def Lernaean_Hydra_attack(Hercules):
+    print("Your enemy readies a vicious blow!")
+    foe_attack = pick_random_attack(Lernaean_Hydra["Attacks"])
+    if foe_attack == "Multi-Bite":
+        enemy_attack_chance = Lernaean_Hydra["Attack Power"] + random.randint(1,20)
+        print(f"The beast attacks with a {enemy_attack_chance}")
+        if enemy_attack_chance >= Hercules["Armor Class"]:
+            print("You have been struck")
+            Hercules["Health"] -= Multi_Bite(Lernaean_Hydra["Attack Power"])
+        else:
+            print("The lunging bite attack missed!")
+    elif foe_attack == Tail_Whip:
+        enemy_attack_chance = Lernaean_Hydra["Attack Power"] + random.randint(1,20)
+        print(f"The beast attacks with a {enemy_attack_chance}")
+        if enemy_attack_chance >= Hercules["Armor Class"]:
+            print("You have been struck!")
+            Hercules["Health"] -= Tail_Whip(Lernaean_Hydra["Attack Power"])
+        else:
+            print("The swinging tail attack missed!")
 
 
 Hercules_attack(Nemean_Lion)
 Nemean_Lion_attack(Hercules)
+Lernaean_Hydra_attack(Hercules)
