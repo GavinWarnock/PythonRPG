@@ -148,6 +148,9 @@ while Hercules["Health"] > 0 or Nemean_Lion["Health"] > 0:
         print("You have slain the Nemean Lion!")
         break
     Nemean_Lion_attack(Hercules)
+    if Hercules["Health"] < 0:
+        print("You have died")
+        break
 
 
 
