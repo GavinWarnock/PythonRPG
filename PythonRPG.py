@@ -13,7 +13,7 @@ def Sword(attack_power):
     damage_dealt = attack_power + random.randint(1,10)  # Different functions for Herc's attacks
     print(f"Your sword did {damage_dealt} damage!")
     return damage_dealt
-def  Punch(attack_power):
+def Punch(attack_power):
     damage_dealt = attack_power + random.randint(1,6)
     print(f"Your punch did {damage_dealt} damage!")
     return(damage_dealt)
@@ -38,7 +38,7 @@ def Tail_Whip(attack_power):
     print(f"The monster swipes it's mighty tail at you for {damage_dealt} damage!")
 
 
-def Hercules_attack(enemy):
+def Hercules_attack(enemy):                                                  # Function for Herc's attacks against enemies
     attack = input("Which attack would you like to use? Punch, Kick, or Sword ")   # Function for Herc's attacks against enemies
     if attack == "Punch":
         attack_chance = Hercules.get("Attack Power") + random.randint(1,20)
@@ -97,14 +97,14 @@ def Nemean_Lion_attack(Hercules):                                           # Fu
     else:
         print("Invalid Attack")
 
-def Lernaean_Hydra_attack(Hercules):
+def Lernaean_Hydra_attack(Hercules):                                        # Function for Lernaean Hydra's attacks against Herc
     print("Your enemy readies a vicious blow!")
     foe_attack = pick_random_attack(Lernaean_Hydra["Attacks"])
     if foe_attack == "Multi-Bite":
         enemy_attack_chance = Lernaean_Hydra["Attack Power"] + random.randint(1,20)
         print(f"The beast attacks with a {enemy_attack_chance}")
         if enemy_attack_chance >= Hercules["Armor Class"]:
-            print("You have been struck")
+            print("You have been struck!")
             Hercules["Health"] -= Multi_Bite(Lernaean_Hydra["Attack Power"])
         else:
             print("The lunging bite attack missed!")
@@ -117,7 +117,29 @@ def Lernaean_Hydra_attack(Hercules):
         else:
             print("The swinging tail attack missed!")
 
+def Cerberus_attack(Hercules):                                              # Function for Cerberus' attacks against Herc
+    print("Your enemy readies a vicious blow!")
+    foe_attack = pick_random_attack(Cerberus["Attacks"])
+    if foe_attack == "Multi-Bite":
+        enemy_attack_chance = Cerberus["Attack Power"] + random.randint(1,20)
+        print(f"The beast attacks with a {enemy_attack_chance}")
+        if enemy_attack_chance >= Hercules["Armor Class"]:
+            print("You have been struck!")
+            Hercules["Health"] -= Multi_Bite(Cerberus["Attack Power"])
+        else:
+            print("The lunging bite missed!")
+    elif foe_attack == "Pounce":
+        enemy_attack_chance = Cerberus["Attack Power"] + random.randint(1,20)
+        print(f"The beast attacks with a {enemy_attack_chance}")
+        if enemy_attack_chance >= Hercules["Armor Class"]:
+            print("You have been struck!")
+            Hercules["Health"] -= Pounce(Cerberus["Attack Power"])
+        else:
+            print("With a great leap the beast pounces and misses you!")
+
+
 
 Hercules_attack(Nemean_Lion)
 Nemean_Lion_attack(Hercules)
 Lernaean_Hydra_attack(Hercules)
+Cerberus_attack(Hercules)
