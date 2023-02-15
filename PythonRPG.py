@@ -138,19 +138,30 @@ def Cerberus_attack(Hercules):                                              # Fu
         else:
             print("With a great leap the beast pounces and misses you!")
 
+def Attack(current_enemy):
+    while Hercules["Health"] > 0 or current_enemy["Health"] > 0:
+        Hercules_attack(current_enemy)
+        if Hercules["Health"] < 0:
+            print("You have died")
+            break
+        elif current_enemy["Health"] < 0:
+            print(f"You have slain the {Nemean_Lion}!")
+            break
+        if current_enemy == Nemean_Lion:
+            Nemean_Lion_attack(Hercules)
+            if Hercules["Health"] < 0:
+                print("You have died.")
+                break
+        elif current_enemy == Lernaean_Hydra:
+            Lernaean_Hydra_attack(Hercules)
+            if Hercules["Health"] < 0:
+                print("You have died.")
+                break
+        elif current_enemy == Cerberus:
+            Cerberus_attack(Hercules)
+            if Hercules["Health"] < 0:
+                print("You have died.")
+                break   
+        
 
-while Hercules["Health"] > 0 or Nemean_Lion["Health"] > 0:
-    Hercules_attack(Nemean_Lion)
-    if Hercules["Health"] < 0:
-        print("You have died")
-        break
-    elif Nemean_Lion["Health"] < 0:
-        print("You have slain the Nemean Lion!")
-        break
-    Nemean_Lion_attack(Hercules)
-    if Hercules["Health"] < 0:
-        print("You have died")
-        break
-
-
-
+Attack(Nemean_Lion)
