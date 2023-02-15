@@ -1,7 +1,7 @@
-Hercules = {"Health": 100, "Attack Power": 5, "Attacks": ["Punch", "Kick", "Sword"], "Armor Class": 15}
-Nemean_Lion = {"Health": 25, "Attack Power": 3, "Attacks": ["Claws", "Multi-Bite", "Pounce"], "Armor Class": 12}
-Lernaean_Hydra = {"Health": 60, "Attack Power": 6, "Attacks": ["Multi-Bite", "Tail-Whip"], "Armor Class": 13}
-Cerberus = {"Health": 80, "Attack Power": 8, "Attacks": ["Multi-Bite", "Pounce"], "Armor Class": 16 }
+Hercules = {"Name": "Hercules", "Health": 100, "Attack Power": 5, "Attacks": ["Punch", "Kick", "Sword"], "Armor Class": 15}
+Nemean_Lion = {"Name": "Nemean Lion", "Health": 25, "Attack Power": 3, "Attacks": ["Claws", "Multi-Bite", "Pounce"], "Armor Class": 12}
+Lernaean_Hydra = {"Name": "Lernaean Hydra", "Health": 60, "Attack Power": 6, "Attacks": ["Multi-Bite", "Tail-Whip"], "Armor Class": 13}
+Cerberus = {"Name": "Cerberus", "Health": 80, "Attack Power": 8, "Attacks": ["Multi-Bite", "Pounce"], "Armor Class": 16 }
 
 import random
 
@@ -145,7 +145,7 @@ def Attack(current_enemy):
             print("You have died")
             break
         elif current_enemy["Health"] < 0:
-            print(f"You have slain the {Nemean_Lion}!")
+            print(f"You have slain the {current_enemy['Name']}!")         
             break
         if current_enemy == Nemean_Lion:
             Nemean_Lion_attack(Hercules)
