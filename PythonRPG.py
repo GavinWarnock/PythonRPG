@@ -4,6 +4,12 @@ Lernaean_Hydra = {"Name": "Lernaean Hydra", "Health": 60, "Attack Power": 6, "At
 Cerberus = {"Name": "Cerberus", "Health": 80, "Attack Power": 8, "Attacks": ["Multi-Bite", "Pounce"], "Armor Class": 16 }
 
 import random
+import sys,time
+def print_slow(string):    # 
+    for letter in string:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.1)
 
 def pick_random_attack(list_of_attacks):                # Random attack funtion for enemy attacks
     selected_attack = random.choice(list_of_attacks)
@@ -138,7 +144,7 @@ def Cerberus_attack(Hercules):                                              # Fu
         else:
             print("With a great leap the beast pounces and misses you!")
 
-def Attack(current_enemy):
+def Attack(current_enemy):                                                        # Function for attacks
     while Hercules["Health"] > 0 or current_enemy["Health"] > 0:
         Hercules_attack(current_enemy)
         if Hercules["Health"] < 0:
@@ -163,5 +169,26 @@ def Attack(current_enemy):
                 print("You have died.")
                 break   
         
+def Run_Game():
+    print_slow("You are the mighty grecian hero Hercules! King Eurystheus has given you three tasks to complete!")
+    print(" ")
+    print_slow("1. Slay the vicious Nemean Lion!") 
+    print(" ")
+    print_slow("2. Defeat the impossible nine-headed Lernaean Hydra!") 
+    print(" ")
+    print_slow("3. Capture the guard dog of the underworld Cerberus!")
+    print(" ")
+    print_slow("Your journey starts in Nemea where the great Nemean Lion resides. After days of travel you come across the mighty beast! ")
+    print(" ")
+    print("Prepare for battle!")
 
-Attack(Nemean_Lion)
+    Attack(Nemean_Lion)
+
+    print_slow("You have felled the savage lion! It's hide would make a wondrous gift for the king!")
+    print(" ")
+    print_slow("Your next task brings you to the marshes of Lern in search of the nine-headed monster. As you trek through the grime you hear a shriek as the monster emerges from depths of the swamp!")
+    print(" ")
+    print("Prepare for battle!")
+
+    Attack(Lernaean_Hydra)
+Run_Game()
