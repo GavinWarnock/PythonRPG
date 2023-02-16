@@ -47,6 +47,7 @@ def Tail_Whip(attack_power):
 
 def Hercules_attack(enemy):                                                 # Function for Herc's attacks against enemies
     attack = input("Which attack would you like to use? Punch, Kick, or Sword ")   # Function for Herc's attacks against enemies
+
     if attack == "Punch":
         attack_chance = Hercules.get("Attack Power") + random.randint(1,20)
         print(f"Your attack roll is {attack_chance}")
@@ -115,7 +116,7 @@ def Lernaean_Hydra_attack(Hercules):                                        # Fu
             Hercules["Health"] -= Multi_Bite(Lernaean_Hydra["Attack Power"])
         else:
             print("The lunging bite attack missed!")
-    elif foe_attack == Tail_Whip:
+    elif foe_attack == "Tail Whip":
         enemy_attack_chance = Lernaean_Hydra["Attack Power"] + random.randint(1,20)
         print(f"The beast attacks with a {enemy_attack_chance}")
         if enemy_attack_chance >= Hercules["Armor Class"]:
@@ -160,6 +161,7 @@ def Attack(current_enemy):                                                      
                 break
         elif current_enemy == Lernaean_Hydra:
             Lernaean_Hydra_attack(Hercules)
+
             if Hercules["Health"] < 0:
                 print("You have died.")
                 break
