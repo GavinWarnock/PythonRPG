@@ -1,7 +1,7 @@
 Hercules = {"Name": "Hercules", "Health": 100, "Attack Power": 5, "Attacks": ["Punch", "Kick", "Sword"], "Armor Class": 15}
 Nemean_Lion = {"Name": "Nemean Lion", "Health": 25, "Attack Power": 3, "Attacks": ["Claws", "Multi-Bite", "Pounce"], "Armor Class": 12}
 Lernaean_Hydra = {"Name": "Lernaean Hydra", "Health": 60, "Attack Power": 6, "Attacks": ["Multi-Bite", "Tail-Whip"], "Armor Class": 13}
-Cerberus = {"Name": "Cerberus", "Health": 80, "Attack Power": 8, "Attacks": ["Multi-Bite", "Pounce"], "Armor Class": 16 }
+Cerberus = {"Name": "Cerberus", "Health": 50, "Attack Power": 8, "Attacks": ["Multi-Bite", "Pounce"], "Armor Class": 14}
 
 import random
 import sys,time
@@ -43,7 +43,7 @@ def Pounce(attack_power):
 def Tail_Whip(attack_power):
     damage_dealt = attack_power + random.randint(1,12)
     print(f"The monster swipes it's mighty tail at you for {damage_dealt} damage!")
-
+    return damage_dealt
 
 def Hercules_attack(enemy):                                                 # Function for Herc's attacks against enemies
     attack = input("Which attack would you like to use? Punch, Kick, or Sword ")   # Function for Herc's attacks against enemies
@@ -99,7 +99,7 @@ def Nemean_Lion_attack(Hercules):                                           # Fu
         print(f"The beast attacks with a {enemy_attack_chance}")
         if enemy_attack_chance >= Hercules["Armor Class"]:
             print("You have been struck!")
-            Hercules["Health"] -= Pounce(Nemean_Lion["Attack Power"])         # LINE BROKEN UNSURE AS TO WHY?
+            Hercules["Health"] -= Pounce(Nemean_Lion["Attack Power"])        
         else:
             print("With a great leap the beast pounces and misses you!")
     else:
@@ -116,7 +116,7 @@ def Lernaean_Hydra_attack(Hercules):                                        # Fu
             Hercules["Health"] -= Multi_Bite(Lernaean_Hydra["Attack Power"])
         else:
             print("The lunging bite attack missed!")
-    elif foe_attack == "Tail Whip":
+    elif foe_attack == "Tail-Whip":
         enemy_attack_chance = Lernaean_Hydra["Attack Power"] + random.randint(1,20)
         print(f"The beast attacks with a {enemy_attack_chance}")
         if enemy_attack_chance >= Hercules["Armor Class"]:
@@ -152,24 +152,27 @@ def Attack(current_enemy):                                                      
             print("You have died")
             break
         elif current_enemy["Health"] < 0:
-            print(f"You have slain the {current_enemy['Name']}!")         
+            if current_enemy["Name"] == "Cerberus":
+                print("Just before the final blow you lower your blade. You instead bind the creature to return it to the king!")
+            else:
+                print(f"You have bested the {current_enemy['Name']}!")         
             break
         if current_enemy == Nemean_Lion:
             Nemean_Lion_attack(Hercules)
             if Hercules["Health"] < 0:
                 print("You have died.")
-                break
+                exit()
         elif current_enemy == Lernaean_Hydra:
             Lernaean_Hydra_attack(Hercules)
 
             if Hercules["Health"] < 0:
                 print("You have died.")
-                break
+                exit()
         elif current_enemy == Cerberus:
             Cerberus_attack(Hercules)
             if Hercules["Health"] < 0:
                 print("You have died.")
-                break   
+                exit()
         
 def Run_Game():
     print_slow("You are the mighty grecian hero Hercules! King Eurystheus has given you three tasks to complete!")
@@ -188,9 +191,22 @@ def Run_Game():
 
     print_slow("You have felled the savage lion! It's hide would make a wondrous gift for the king!")
     print(" ")
-    print_slow("Your next task brings you to the marshes of Lern in search of the nine-headed monster. As you trek through the grime you hear a shriek as the monster emerges from depths of the swamp!")
+    print_slow("Your next task brings you to the marshes of Lern in search of the nine-headed monster hydra. As you trek through the grime you hear a shriek as the beast emerges from depths of the swamp!")
     print(" ")
     print("Prepare for battle!")
 
     Attack(Lernaean_Hydra)
+
+    print_slow("Down collapses the hydra's lifeless body! You hold one of it's heads high as a trophy to your success!")
+    print(" ")
+    print_slow("Your final task stands before you! The gates of the underwold and domain of the god Hades! As you approach the grim monument, the massive shape of a three headed hound rises from the ground!")
+    print("")
+    print_slow("PREPARE FOR YOUR FINAL BATTLE!")
+    print(" ")
+
+    Attack(Cerberus)
+
+    print_slow("Your quest is over and all three tasks have been completed!")
+    print("")
+    print_slow("YOU WIN!")
 Run_Game()
